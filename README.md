@@ -1,17 +1,71 @@
-# React + Vite
+# HRMS Lite - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend for the HRMS Lite application built with React and Vite. It provides a clean dashboard interface for managing employees and tracking daily attendance.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** with React Router v7 for client-side routing
+- **Vite 7** for fast dev server and optimized builds
+- **Tailwind CSS v4** for utility-first styling
+- **Axios** for API communication
+- **Lucide React** for icons
+- **React Hot Toast** for toast notifications
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js >= 18
+- Backend API running (see [backend README](../backend/README.md))
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# hrms-frontend
+### Installation
+
+```bash
+cd frontend
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the `frontend/` directory:
+
+```env
+VITE_API_URL=http://localhost:8000
+```
+
+If not set, it defaults to the production API URL.
+
+### Running the Dev Server
+
+```bash
+npm run dev
+```
+
+App will be available at `http://localhost:5173`.
+
+## Project Structure
+
+```
+src/
+├── api/          # Axios config
+├── components/   # Reusable UI components (forms, lists, layout)
+│   └── ui/       # Small shared components (spinner, empty state, error)
+├── pages/        # Route-level page components
+├── App.jsx       # Route definitions
+├── main.jsx      # Entry point
+└── index.css     # Global styles
+```
+
+## Available Scripts
+
+- `npm run dev` - Start dev server
+- `npm run build` - Production build
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Key Features
+
+- **Dashboard** - Shows today's attendance summary (present, absent, not marked)
+- **Employee Management** - Add, view, and manage employee records
+- **Attendance Tracking** - Mark daily attendance with date and status filters
+- **Future Date Restriction** - Users cannot mark attendance for future dates (validated on both frontend and backend)
