@@ -17,6 +17,7 @@ export default function AttendanceForm({ employees, onClose, onSuccess }) {
     const errs = {}
     if (!form.employee_id) errs.employee_id = 'Select an employee'
     if (!form.date) errs.date = 'Date is required'
+    else if (form.date > today) errs.date = 'Attendance for future dates is not allowed'
     if (!form.status) errs.status = 'Select attendance status'
     setErrors(errs)
     return Object.keys(errs).length === 0
@@ -80,6 +81,7 @@ export default function AttendanceForm({ employees, onClose, onSuccess }) {
             <input
               type="date"
               value={form.date}
+              max={today}
               onChange={(e) => handleChange('date', e.target.value)}
               className={`w-full rounded-lg border px-3 py-2 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 ${
                 errors.date ? 'border-red-300 bg-red-50' : 'border-slate-300'
